@@ -1,0 +1,66 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Часто задаваемые вопросы</title>
+    <link rel="stylesheet" href="{% static 'main/css/FAQs.css'%}">
+    <link href="{% static 'main/css/fonts/stylesheet.css'%}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <header>
+        <div class="buttons">
+            <div id="main_button"><a href="/">Главная</a></div>
+            <div id="faqs_button"><a href="/FAQs">FAQs</a></div>
+        </div>
+    </header>
+
+    <div class="container">Что делает ваше приложение?</div>
+    <div class="content">
+        <p>
+            Приложение генерирует три варианта продолжения вашего текста и позволяет сохранить результат на Ваше устройство в текстовом файле.
+        </p>
+    </div>
+
+    <div class="container">Какие языки поддерживаются вашим приложением?</div>
+    <div class="content">
+        <p>
+            На данный момент приложение поддерживает только русский язык. В будущем планируется добавить английский, французский и испанский языки.
+        </p>
+    </div>
+
+    <div class="container">На каких данных обучалась нейронная сеть?</div>
+    <div class="content">
+        <p>
+            Нейросеть обучена на наборе данных из фрагментов текстов русской литературы различных авторов. Длины текстов находятся в диапазоне от 2000 до 2100 символов. Всего выборка содержит 65845 уникальных текстов. Ссылка на набор данных:
+        </p>
+        <a href="https://www.kaggle.com/datasets/tatianafofanova/authorstexts?select=val_data.csv">
+            https://www.kaggle.com/datasets/tatianafofanova/authorstexts?select=val_data.csv
+        </a>
+    </div>
+
+    <div class="container">Есть ли ограничения на количество символов, которое можно ввести для генерации текста?</div>
+    <div class="content">
+        <p>
+            Да. Длина введенного сообщения не должна превышать лимит в 400 символов.
+        </p>
+    </div>
+
+    <div class="container">Если введен текст с ошибками, то нейросеть воспримет его?</div>
+    <div class="content">
+        <p>
+            Нейросеть воспримет текст, введенный с ошибками при условии, что текст на русском языке.
+        </p>
+    </div>
+
+    <div class="container">Как связаться с командой разработчиков, если у меня есть вопросы или проблемы?</div>
+    <div class="content">
+        <p>
+            Связаться с командой можно с помощью формы обратной связи, которая находится во вкладке "Главная" или по почте тим-лида: panteleev03@mail.ru
+        </p>
+    </div>
+</body>
+</html>

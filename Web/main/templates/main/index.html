@@ -1,0 +1,126 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'main/css/index.css'%}">
+    <link href="{% static 'main/css/fonts/stylesheet.css'%}" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="{% static 'main/img/favicon.png'%}">
+</head>
+<body>
+    <header>
+        <div class="buttons">
+            <div id="main_button"><a href="/">Главная</a></div>
+            <div id="faqs_button"><a href="/FAQs">FAQs</a></div>
+        </div>
+    </header>
+
+    <div id="container_letter">
+        <div class="letter" onmouseover="runAway(this)">3</div>
+        <div class="letter" onmouseover="runAway(this)">P</div>
+        <div class="letter" onmouseover="runAway(this)">a</div>
+        <div class="letter" onmouseover="runAway(this)">t</div>
+        <div class="letter" onmouseover="runAway(this)">h</div>
+        <div class="letter" onmouseover="runAway(this)">s</div>
+    </div>
+
+    <textarea id="input_text_main" type="text" maxlength="400" placeholder="Введите ваш текст"></textarea>
+    <div id="generate_button" type="submit">Сгенерировать текст</div>
+    <div id="feedback_button">Свяжитесь с нами</div>
+
+    <div class="container">
+        <div id="text_output_1"></div>
+        <div id="text_output_2"></div>
+        <div id="text_output_3"></div>
+    </div>
+
+    <div id="save_button">Сохранить результаты</div>
+
+    <div id="overlay"></div>
+    <form id="feedback_form" method="post" onsubmit="event.preventDefault(); submitForm();">
+        {% csrf_token %}
+        <div id="upper_band">Свяжитесь с нами</div>
+        <div class="text_feedback_form">Ваше имя</div>
+        {{ form.name }}
+        <div id="text_error_name">Заполните это поле</div>
+        <div class="text_feedback_form">Ваш Email-адрес</div>
+        {{ form.email }}
+        <div id="text_error_email">Некорректный email</div>
+        <div class="text_feedback_form">Сообщение</div>
+        {{ form.text }}
+        <div id="text_error_main">Заполните это поле</div>
+        <button id="feedback_button_in_form" type="submit">Отправить</button>
+        <div id="success_send_window">
+            <span>&#10004;</span>
+            <span>Спасибо! Ваша форма отправлена.</span>
+        </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'main/js/feedback.js'%}"></script>
+    <script src="{% static 'main/js/generate.js'%}"></script>
+    <script src="{% static 'main/js/letter.js'%}"></script>
+    <script>
+        function submitForm() {
+            const name = document.getElementById('text_name');
+            const email = document.getElementById('text_email');
+            const main_text = document.getElementById('text_main');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            let emailValue = email.value.trim();
+            let name_check = false;
+            let email_check = false;
+            let main_text_check = false;
+            if (name.value !== "") {
+                name_check = true;
+            } else {
+                name_check = false;
+            }
+            if (emailValue !== "" && emailRegex.test(emailValue)) {
+                email_check = true;
+            } else {
+                email_check = false;
+            }
+            if (main_text.value !== "") {
+                main_text_check = true;
+            } else {
+                main_text_check = false;
+            }
+            if (name_check && email_check && main_text_check) {
+                $.ajax({
+                    url: '{% url "addfeedbacktodb" %}',
+                    method: 'POST',
+                    data: $('#feedback_form').serialize(),
+                });
+            }
+        }
+
+        $(function() {
+            $("#generate_button").click(function() {
+                var input_text = $("#input_text_main").val();
+                if (input_text !== "") {
+                    $.ajax({
+                        url: '{% url "gentext" %}',
+                        type: "POST",
+                        data: {
+                            input_text: input_text,
+                            csrfmiddlewaretoken: "{{ csrf_token }}"
+                        },
+                        success: function(data) {
+                            $("#text_output_1").text(data.generated_text_1);
+                            $("#text_output_2").text(data.generated_text_2);
+                            $("#text_output_3").text(data.generated_text_3);
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText);
+                        }
+                    });
+                }
+            });
+        });
+</script>
+</body>
+</html>

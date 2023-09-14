@@ -1,0 +1,137 @@
+* {
+    font-family: "Cera Pro", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 97px;
+    width: 100%;
+    box-shadow: 0 2px 10px #719ECE;
+    border-radius: 0 0 8px 8px;
+    background-color: white;
+}
+
+.buttons {
+    height: 53px;
+    width: 262px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 89px;
+    height: 53px;
+    border-radius: 8px;
+    color: #0D6EFD;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+#faqs_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 53px;
+    background-color: #0D6EFD;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+#about_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 69px;
+    height: 53px;
+    border-radius: 8px;
+    color: #0D6EFD;
+    font-size: 16px;
+}
+
+#main_button:hover, #about_button:hover {
+    background-color: #0D6EFD;
+    color: white;
+    transition: all 250ms;
+}
+
+a {
+    color: #0D6EFD;
+    text-decoration: none;
+}
+
+#faqs_button a:visited {
+    color: white;
+}
+
+#main_button a:visited, #about_button a:visited {
+    color: #0D6EFD;
+}
+
+#main_button:hover a:visited, #about_button:hover a:visited {
+    color: white;
+}
+
+.container {
+    display: block;
+    text-align: center;
+    width: 60%;
+    height: auto;
+    background-color: white;
+    border-radius: 8px;
+    color: #0D6EFD;
+    padding: 10px;
+    margin: 10px auto;
+    font-size: 20px;
+    transition: all 0.25s ease-out;
+    max-height: 500px;
+    margin-bottom: 5px;
+}
+
+.container:first-of-type {
+    margin-top: 125px;
+}
+
+p {
+    text-align: justify
+}
+
+.content {
+    width: 60%;
+    margin: 5px auto;
+    border-radius: 8px;
+    transition: all 0.25s ease-out;
+    overflow: hidden;
+    min-height: 0;
+    font-size: 20px;
+    max-height: 500px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.container.active + .content {
+    max-height: 500px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.container.active {
+    color: #0D6EFD;
+    background-color: white;
+    transition: all 0.25s ease-out;
+}
