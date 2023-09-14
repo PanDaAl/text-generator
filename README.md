@@ -5,7 +5,7 @@
 <p align="center">
    <img src="https://img.shields.io/badge/framework-Django%204.2.5-green" alt="Django">
    <img src="https://img.shields.io/badge/framework-torch%202.0.1-orange" alt="torch">
-   <img src="https://img.shields.io/badge/framework-numpy%201.25.2-blue" alt="numpy">
+   <img src="https://img.shields.io/badge/library-numpy%201.25.2-blue" alt="numpy">
 </p>
 
 ## О проекте
